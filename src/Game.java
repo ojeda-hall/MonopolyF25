@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -11,6 +12,7 @@ public class Game {
     private String name;
     private int maxPlayers;
     private ArrayList<Player> players;
+    private String currentPlayer;
 
     public Game(String name, int maxPlayers){
         this.name = name;
@@ -41,15 +43,24 @@ public class Game {
 
 
     public void registerPlayers(){
+    int playerNum =  ui.promptNumeric("Tast antal deltagere");
+        if(playerNum >= 2 && playerNum <= 6){
+            while(playerNum > this.players.size()) {
 
+                String playerName = ui.promptText("Tast spiller navn");
+                this.createPlayer(playerName, 0);
 
-     while(this.players.size() < this.maxPlayers) {
+            }
+        }else{
+            ui.displayMessage("Ugyldigt antal, prøv igen");
+            registerPlayers();
+        }
+        Collections.shuffle(players);
 
-        String playerName = ui.promptText("Tast spiller navn");
-        this.createPlayer(playerName, 0);
-     }
     }
+public void runGameLoop(){
 
+}
 
     private void createPlayer(String name, int score){
         Player p = new Player(name, score);
@@ -76,4 +87,5 @@ public class Game {
         //ui.displayList(ui.promptChoice(playerData, 3, "vælg en spiller"), "Din spiller liste");
         io.saveData(playerData, "data/playerData.csv", "Name, Score");
     }
+
 }
