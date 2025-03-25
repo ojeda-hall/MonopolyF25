@@ -26,6 +26,8 @@ public class TextUI {
         for (int i = 0; i < list.size();i++) {
             System.out.println(i+1+". "+list.get(i));
         }
+
+
     }
 
     public int promptNumeric(String msg){
