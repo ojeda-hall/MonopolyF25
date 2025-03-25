@@ -38,9 +38,26 @@ public class TextUI {
         return numInput;
     }
 
+    public void displayMsg(String msg) {
+        System.out.println(msg);
+    }
+
+    public boolean promptBinary(String msg) {
+        System.out.println(msg);
+        String input = sc.nextLine();
+        if (input.equals("Y") || input.equals("y")) {
+            return true;
+        } else if (input.equals("N") || input.equals("n")) {
+            return false;
+        } else {
+            return promptBinary(msg);
+
+        }
+    }
+
     public String promptText(String msg){
         System.out.println(msg);//Stille brugeren et spørgsmål
-        String input = sc.nextLine();          //Give brugere et sted at placere sit svar og vente på svaret
+        String input = sc.nextLine(); //Give brugere et sted at placere sit svar og vente på svaret
 
         return input;
     }
