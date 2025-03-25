@@ -26,8 +26,6 @@ public class TextUI {
         for (int i = 0; i < list.size();i++) {
             System.out.println(i+1+". "+list.get(i));
         }
-
-
     }
 
     public int promptNumeric(String msg){
@@ -39,9 +37,25 @@ public class TextUI {
     }
 
     public String promptText(String msg){
-        System.out.println(msg);//Stille brugeren et spørgsmål
-        String input = sc.nextLine();          //Give brugere et sted at placere sit svar og vente på svaret
+        System.out.println(msg); //Stil brugeren et spørgsmål
+        String input = sc.nextLine(); // Give brugere et sted at placere sit svar og vente på svaret
 
         return input;
+    }
+
+    public void displayMsg(String msg){
+        System.out.println(msg);
+    }
+
+    public boolean promptBinary(String msg){
+        char choice = promptText(msg).toLowerCase().charAt(0);
+        if (choice == 'y'){
+            return true;
+        } else if (choice == 'n'){
+            return false;
+        } else {
+            promptBinary("Forkert input, indtast 'y' eller 'n': ");
+        }
+    return false;
     }
 }

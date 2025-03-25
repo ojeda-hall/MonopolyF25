@@ -6,8 +6,6 @@ public class Game {
    static TextUI ui = new TextUI();
    static FileIO io = new FileIO();
 
-
-
     private String name;
     private int maxPlayers;
     private ArrayList<Player> players;
@@ -16,20 +14,23 @@ public class Game {
         this.name = name;
         this.maxPlayers = maxPlayers;
         players = new ArrayList<>();
-
     }
 
 
-    public void startSession(){
-        ArrayList<String> data = io.readData("data/playerData.csv");
-        if(!data.isEmpty()){
-            for(String s : data){
-              String[] values =  s.split(",");//  "tess, 0"
-                int score = Integer.parseInt(values[1].trim());
-               createPlayer(values[0],score);
-            }
+    public void startSession() {
 
-        }else{
+        // Welcome message
+        ui.displayMsg("Velkommen til " + this.name);
+
+        // Load data
+        ArrayList<String> data = io.readData("data/playerData.csv");
+        if (!data.isEmpty() && ui.promptBinary("Vil du fortsætte spillet? (y/n): ")) {
+            for (String s : data) {
+                String[] values = s.split(",");//  "tess, 0"
+                int score = Integer.parseInt(values[1].trim());
+                createPlayer(values[0], score);
+            }
+        } else {
             registerPlayers();
         }
         displayPlayers();
@@ -38,8 +39,6 @@ public class Game {
 
 
     public void registerPlayers(){
-
-
      while(this.players.size() < this.maxPlayers) {
 
         String playerName = ui.promptText("Tast spiller navn");
@@ -52,6 +51,7 @@ public class Game {
         Player p = new Player(name, score);
         players.add(p);
     }
+
     public void displayPlayers(){
         for(Player p:players){
             System.out.println(p);
