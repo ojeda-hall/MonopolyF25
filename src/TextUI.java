@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 public class TextUI {
 
-
     Scanner sc = new Scanner(System.in);
 
     public ArrayList<String> promptChoice( ArrayList<String> options, int limit, String msg){
@@ -31,6 +30,7 @@ public class TextUI {
     }
 
     public int promptNumeric(String msg){
+
         System.out.println(msg);//Stille brugeren et spørgsmål
         String input = sc.nextLine();          //Give brugere et sted at placere sit svar og vente på svaret
         int numInput = Integer.parseInt(input);       //Konvertere svaret til et tal

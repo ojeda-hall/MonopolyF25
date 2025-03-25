@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -9,8 +10,9 @@ public class Game {
 
 
     private String name;
-    private int maxPlayers;
+    private int maxPlayers ;
     private ArrayList<Player> players;
+    private Player currentPlayer;
 
     public Game(String name, int maxPlayers){
         this.name = name;
@@ -39,15 +41,30 @@ public class Game {
     }
 
 
-
     public void registerPlayers(){
 
+        int totalPlayers = 0;
 
-     while(this.players.size() < this.maxPlayers) {
+        try {
+            totalPlayers = ui.promptNumeric("Number of players:");       //Konvertere svaret til et tal
+        } catch (NumberFormatException e) {
+            ui.displayMessage("Wrong input.. Please try again.");
+            registerPlayers();
+        }
+
+
+    if(totalPlayers > this.maxPlayers || totalPlayers < 0){
+        System.out.println("Your input number was higher than the allowed " + this.maxPlayers + " players");
+        registerPlayers();
+    }
+
+     while(this.players.size() < totalPlayers) {
 
         String playerName = ui.promptText("Tast spiller navn");
         this.createPlayer(playerName, 0);
      }
+
+     Collections.shuffle(this.players);
     }
 
 
@@ -76,4 +93,15 @@ public class Game {
         //ui.displayList(ui.promptChoice(playerData, 3, "vælg en spiller"), "Din spiller liste");
         io.saveData(playerData, "data/playerData.csv", "Name, Score");
     }
+
+    public String getPlayerName(){
+        return currentPlayer.getName();
+    }
+
+    public void runGameLoop(){
+        currentPlayer=players.get(0);
+        ui.displayMessage("It's this players turn to pick: "+currentPlayer.getName());
+
+    }
+
 }
