@@ -13,7 +13,7 @@ public class TextUI {
 
         ArrayList<String> choices = new ArrayList<>();  //Lave en beholder til at gemme brugerens valg
 
-        while(choices.size() < limit){             //tjekke om brugeren skal vælge flere drinks
+        while(choices.size() < limit){                  //tjekke om brugeren skal vælge flere drinks
 
             int choice = promptNumeric(msg);
             choices.add(options.get(choice-1));
@@ -32,8 +32,8 @@ public class TextUI {
     // ____________________________________________________________
 
     public int promptNumeric(String msg){
-        System.out.println(msg);//Stille brugeren et spørgsmål
-        String input = sc.nextLine();          //Give brugere et sted at placere sit svar og vente på svaret
+        System.out.println(msg);                      //Stille brugeren et spørgsmål
+        String input = sc.nextLine();                 //Give brugere et sted at placere sit svar og vente på svaret
         int numInput = Integer.parseInt(input);       //Konvertere svaret til et tal
 
         return numInput;
@@ -48,7 +48,7 @@ public class TextUI {
     // ____________________________________________________________
 
     public String promptText(String msg){
-        System.out.println(msg);//Stille brugeren et spørgsmål
+        System.out.println(msg);               //Stille brugeren et spørgsmål
         String input = sc.nextLine();          //Give brugere et sted at placere sit svar og vente på svaret
 
         return input;

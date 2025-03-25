@@ -3,7 +3,6 @@ import java.util.*;
 public class Game {
 
     // Attributes
-
     static TextUI ui = new TextUI();
     static FileIO io = new FileIO();
     private String name;
