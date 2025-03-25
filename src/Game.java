@@ -1,24 +1,19 @@
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.Collections;
 
 public class Game {
-   static TextUI ui = new TextUI();
-   static FileIO io = new FileIO();
-
-
-
+    static TextUI ui = new TextUI();
+    static FileIO io = new FileIO();
     private String name;
     private int maxPlayers;
     private ArrayList<Player> players;
+    private Player currentPlayer;
 
-    public Game(String name, int maxPlayers){
+    public Game(String name){
         this.name = name;
-        this.maxPlayers = maxPlayers;
         players = new ArrayList<>();
 
     }
-
 
     public void startSession(){
         ArrayList<String> data = io.readData("data/playerData.csv");
@@ -30,24 +25,26 @@ public class Game {
                 int score = Integer.parseInt(values[1].trim());
                createPlayer(values[0],score);
             }
-
         }else{
-
             registerPlayers();
         }
+        Collections.shuffle(players); // Randomise order of players
         displayPlayers();
     }
 
 
-
     public void registerPlayers(){
+        this.maxPlayers = ui.promptNumeric("Hvor mange spillere?: ");
 
+        while (maxPlayers < 2 || maxPlayers > 6){
+            ui.displayMessage("Antallet af spillere skal være mellem 2-6, prøv igen");
+            maxPlayers = ui.promptNumeric("Hvor mange spillere?: ");
+        }
 
-     while(this.players.size() < this.maxPlayers) {
-
-        String playerName = ui.promptText("Tast spiller navn");
-        this.createPlayer(playerName, 0);
-     }
+        while(this.players.size() < maxPlayers) {
+            String playerName = ui.promptText("Tast spiller navn");
+            this.createPlayer(playerName, 0);
+        }
     }
 
 
@@ -55,12 +52,14 @@ public class Game {
         Player p = new Player(name, score);
         players.add(p);
     }
+
+
     public void displayPlayers(){
         for(Player p:players){
             System.out.println(p);
         }
-
     }
+
 
     public void endSession() {
         ArrayList<String> playerData = new ArrayList<>();
@@ -75,5 +74,11 @@ public class Game {
         //Test om promptChoice virker
         //ui.displayList(ui.promptChoice(playerData, 3, "vælg en spiller"), "Din spiller liste");
         io.saveData(playerData, "data/playerData.csv", "Name, Score");
+    }
+
+
+    public void runGameLoop(){
+        currentPlayer = players.getFirst();
+        ui.displayMessage("Det er " + currentPlayer.getName() + "'s tur");
     }
 }

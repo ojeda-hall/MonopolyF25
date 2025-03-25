@@ -12,21 +12,14 @@ public class FileIO {
     public void saveData(ArrayList<String> list, String path, String header){
         try {
             FileWriter writer = new FileWriter(path);
-
-
-
             writer.write(header+"\n");
             for (String s : list) {
                 writer.write(s+"\n");
             }
             writer.close();
-
-
         }catch (IOException e) {
-
             System.out.println("problem: "+ e.getMessage());
         }
-
     }
 
     public ArrayList<String> readData(String path) {
@@ -39,10 +32,8 @@ public class FileIO {
             while (scan.hasNextLine()) {
                 String line = scan.nextLine();   //  "tess, 0"
                 data.add(line);
-
             }
         } catch (FileNotFoundException e) {
-
         }
         return data;
     }
