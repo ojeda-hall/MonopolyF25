@@ -66,13 +66,10 @@ public class Game {
 
      //serialiserer player objekterner
         for(Player p: players){
-
           String s = p.toString();
           playerData.add(s);
-
       }
-        //Test om promptChoice virker
-        //ui.displayList(ui.promptChoice(playerData, 3, "vælg en spiller"), "Din spiller liste");
+
         io.saveData(playerData, "data/playerData.csv", "Name, Score");
     }
 
