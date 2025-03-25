@@ -41,8 +41,7 @@ public class Game {
 
 
     public void registerPlayers(){
-
-
+        this.maxPlayers = ui.promptNumeric("Tast antal spillere");
      while(this.players.size() < this.maxPlayers) {
 
         String playerName = ui.promptText("Tast spiller navn");
