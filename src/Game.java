@@ -21,17 +21,29 @@ public class Game {
 
 
     public void startSession(){
+        ui.displayMsg("Velkommen til Matador");
+
         ArrayList<String> data = io.readData("data/playerData.csv");
+
         if(!data.isEmpty()){
-            for(String s : data){
-              String[] values =  s.split(",");//  "tess, 0"
-                int score = Integer.parseInt(values[1].trim());
-               createPlayer(values[0],score);
+            ui.displayMsg("Følgende data er fundet:");
+            System.out.println(data);
+            boolean useData = ui.promptBinary("Vil du bruge gemt data? Y/N: ");
+            if (useData) {
+                for (String s : data) {
+                    String[] values = s.split(",");//  "tess, 0"
+                    int score = Integer.parseInt(values[1].trim());
+                    createPlayer(values[0], score);
+                }
+            } else if (!useData){
+                registerPlayers();
             }
 
-        }else{
+
+        }else {
             registerPlayers();
         }
+
         displayPlayers();
     }
 
