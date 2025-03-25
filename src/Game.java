@@ -22,6 +22,8 @@ public class Game {
 
     public void startSession(){
         ArrayList<String> data = io.readData("data/playerData.csv");
+        ui.displayMessage("Velkommen til "+ this.name);
+
         if(!data.isEmpty() && ui.promptBinary("would your like to continue previous game: Y/N")){
             for(String s : data){
               String[] values =  s.split(",");//  "tess, 0"
@@ -30,7 +32,7 @@ public class Game {
             }
 
         }else{
-            System.out.println("Velkommen til matador, taber!");
+
             registerPlayers();
         }
         displayPlayers();
