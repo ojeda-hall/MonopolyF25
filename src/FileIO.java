@@ -7,7 +7,9 @@ import java.util.Scanner;
 
 public class FileIO {
 
+    // Attributes
 
+    // ____________________________________________________________
 
     public void saveData(ArrayList<String> list, String path, String header){
         try {
@@ -29,6 +31,8 @@ public class FileIO {
 
     }
 
+    // ____________________________________________________________
+
     public ArrayList<String> readData(String path) {
         ArrayList<String> data = new ArrayList<>();
         File file = new File(path);
@@ -46,4 +50,5 @@ public class FileIO {
         }
         return data;
     }
-}
+
+} // Class end
