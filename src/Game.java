@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Random;
 import java.util.List;
 import java.util.Scanner;
 
@@ -11,6 +13,7 @@ public class Game {
     private String name;
     private int maxPlayers;
     private ArrayList<Player> players;
+    private int currentPlayer;
 
     public Game(String name, int maxPlayers){
         this.name = name;
@@ -35,6 +38,7 @@ public class Game {
 
             registerPlayers();
         }
+        Collections.shuffle(this.players, new Random());
         displayPlayers();
     }
 

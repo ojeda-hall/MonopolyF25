@@ -7,6 +7,10 @@ public class Player {
         this.score = score;
     }
 
+    public String getName(){
+        return this.name;
+    }
+
     @Override
     public String toString(){
         return name + ", "+ score;
