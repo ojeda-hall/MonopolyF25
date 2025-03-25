@@ -43,7 +43,6 @@ public class Game {
 
     public void registerPlayers(){
 
-
         while(this.players.size() < this.maxPlayers) {
 
             String playerName = ui.promptText("Tast spiller navn");
@@ -57,6 +56,10 @@ public class Game {
         Player p = new Player(name, score);
         players.add(p);
     }
+
+    // ____________________________________________________________
+
+
     public void displayPlayers(){
         for(Player p:players){
             System.out.println(p);
