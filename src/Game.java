@@ -82,4 +82,11 @@ public class Game {
         //ui.displayList(ui.promptChoice(playerData, 3, "vælg en spiller"), "Din spiller liste");
         io.saveData(playerData, "data/playerData.csv", "Name, Score");
     }
+
+    void runGameLoop() {
+        currentPlayer = 0;
+        ui.displayMessage("Det er "+players.get(currentPlayer).getName()+"s tur");
+
+
+    }
 }

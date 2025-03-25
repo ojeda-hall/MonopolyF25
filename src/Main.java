@@ -15,7 +15,10 @@ public class Main {
 
         // run the game loop
 
+        g.runGameLoop();
 
         g.endSession();
+
     }
+
 }
