@@ -25,6 +25,7 @@ public class Game {
         ArrayList<String> data = io.readData("data/playerData.csv");
         if(!data.isEmpty()&& ui.promptBinary("Continue previously saved game?Y/N")){
             for(String s : data){
+               String[] values =  s.split(",");
                 int score = Integer.parseInt(values[1].trim());
                createPlayer(values[0],score);
             }
