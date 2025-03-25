@@ -1,10 +1,7 @@
-
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class TextUI {
-
 
     Scanner sc = new Scanner(System.in);
 
@@ -41,5 +38,21 @@ public class TextUI {
         String input = sc.nextLine();          //Give brugere et sted at placere sit svar og vente på svaret
 
         return input;
+    }
+
+    public void displayMsg(String msg){
+        System.out.println(msg);
+    }
+
+    public boolean promptBinary(String msg){
+        System.out.println(msg);//Stille brugeren et spørgsmål
+        String input = sc.nextLine();          //Give brugere et sted at placere sit svar og vente på svaret
+
+        if(input.equalsIgnoreCase("n")){
+            return false;
+        } else if(input.equalsIgnoreCase("y")){
+            return true;
+        }
+        return promptBinary(msg);
     }
 }
