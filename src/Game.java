@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -9,6 +10,7 @@ public class Game {
 
 
     private String name;
+    private String currentPlayer;
     private int maxPlayers;
     private ArrayList<Player> players;
 
@@ -41,13 +43,21 @@ public class Game {
 
 
     public void registerPlayers(){
+     int playerNum = ui.promptNumeric("Tast antal deltagere: 2-6");
 
+     if(playerNum>=2&&playerNum<=this.maxPlayers){
+         while(this.players.size() < playerNum) {
 
-     while(this.players.size() < this.maxPlayers) {
-
-        String playerName = ui.promptText("Tast spiller navn");
-        this.createPlayer(playerName, 0);
+             String playerName = ui.promptText("Tast spiller navn");
+             this.createPlayer(playerName, 0);
+         }
+     } else {
+         ui.displayMessage("Ugyldigt antal deltagere, prøv igen!");
+         registerPlayers();
      }
+        Collections.shuffle(players);
+
+
     }
 
 
@@ -55,6 +65,7 @@ public class Game {
         Player p = new Player(name, score);
         players.add(p);
     }
+
     public void displayPlayers(){
         for(Player p:players){
             System.out.println(p);
@@ -76,4 +87,9 @@ public class Game {
         //ui.displayList(ui.promptChoice(playerData, 3, "vælg en spiller"), "Din spiller liste");
         io.saveData(playerData, "data/playerData.csv", "Name, Score");
     }
+    public void runGameLoop(){
+        currentPlayer = players.get(0).getName();
+        ui.displayMessage("Det er "+ currentPlayer+"'s tur");
+    }
+
 }

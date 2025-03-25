@@ -29,6 +29,7 @@ public class FileIO {
 
     }
 
+
     public ArrayList<String> readData(String path) {
         ArrayList<String> data = new ArrayList<>();
         File file = new File(path);
