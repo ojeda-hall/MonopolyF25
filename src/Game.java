@@ -32,7 +32,6 @@ public class Game {
         displayPlayers();
     }
 
-
     public void registerPlayers(){
         this.maxPlayers = ui.promptNumeric("Hvor mange spillere?: ");
 
@@ -47,12 +46,10 @@ public class Game {
         }
     }
 
-
     private void createPlayer(String name, int score){
         Player p = new Player(name, score);
         players.add(p);
     }
-
 
     public void displayPlayers(){
         for(Player p:players){
@@ -60,6 +57,10 @@ public class Game {
         }
     }
 
+    public void runGameLoop(){
+        currentPlayer = players.getFirst();
+        ui.displayMessage("Det er " + currentPlayer.getName() + "'s tur");
+    }
 
     public void endSession() {
         ArrayList<String> playerData = new ArrayList<>();
@@ -69,13 +70,7 @@ public class Game {
           String s = p.toString();
           playerData.add(s);
       }
-
         io.saveData(playerData, "data/playerData.csv", "Name, Score");
     }
 
-
-    public void runGameLoop(){
-        currentPlayer = players.getFirst();
-        ui.displayMessage("Det er " + currentPlayer.getName() + "'s tur");
-    }
 }
