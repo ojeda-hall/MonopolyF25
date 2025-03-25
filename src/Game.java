@@ -22,7 +22,9 @@ public class Game {
 
     public void startSession(){
         ArrayList<String> data = io.readData("data/playerData.csv");
-        if(!data.isEmpty()){
+        ui.displayMessage("Velkommen til "+ this.name);
+
+        if(!data.isEmpty() && ui.promptBinary("would your like to continue previous game: Y/N")){
             for(String s : data){
               String[] values =  s.split(",");//  "tess, 0"
                 int score = Integer.parseInt(values[1].trim());
@@ -30,6 +32,7 @@ public class Game {
             }
 
         }else{
+
             registerPlayers();
         }
         displayPlayers();

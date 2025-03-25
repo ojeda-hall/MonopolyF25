@@ -44,4 +44,24 @@ public class TextUI {
 
         return input;
     }
+
+    public boolean promptBinary(String msg) {
+        String choice = this.promptText(msg);
+
+        if(choice.equalsIgnoreCase("Y")){
+
+            return true;
+        } else if (choice.equals("N")) {
+
+            return false;
+
+        }
+
+        return false;
+    }
+
+    public void displayMessage(String msg) {
+        System.out.println(msg);
+
+    }
 }
