@@ -7,8 +7,6 @@ public class Game {
    static TextUI ui = new TextUI();
    static FileIO io = new FileIO();
 
-
-
     private String name;
     private String currentPlayer;
     private int maxPlayers;
@@ -26,7 +24,7 @@ public class Game {
         ArrayList<String> data = io.readData("data/playerData.csv");
         ui.displayMessage("Velkommen til "+ this.name);
 
-        if(!data.isEmpty() && ui.promptBinary("would your like to continue previous game: Y/N")){
+        if(!data.isEmpty() && ui.promptBinary("Would your like to continue previous game: Y/N")){
             for(String s : data){
               String[] values =  s.split(",");//  "tess, 0"
                 int score = Integer.parseInt(values[1].trim());
@@ -43,7 +41,13 @@ public class Game {
 
 
     public void registerPlayers(){
-     int playerNum = ui.promptNumeric("Tast antal deltagere: 2-6");
+        int playerNum = 0;
+        try {
+            playerNum = ui.promptNumeric("Tast antal deltagere: 2-6");
+        } catch (NumberFormatException e) {
+            System.out.println("Please enter a number");
+            registerPlayers();
+        }
 
      if(playerNum>=2&&playerNum<=this.maxPlayers){
          while(this.players.size() < playerNum) {
