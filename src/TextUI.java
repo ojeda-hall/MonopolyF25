@@ -42,4 +42,22 @@ public class TextUI {
 
         return input;
     }
+    public void displayMsg(String msg){
+        System.out.println(msg);
+    }
+    public boolean promptBinary(String msg){
+        displayMsg(msg);
+        String input =  sc.nextLine();
+
+       if(input.equalsIgnoreCase("y")){
+           return true;
+       } else if (input.equalsIgnoreCase("n")){
+           return false;
+       }
+       else {
+           displayMsg("Invalid input");
+           promptBinary("Try again");
+           return true;
+       }
+    }
 }

@@ -27,6 +27,7 @@ public class Game {
               String[] values =  s.split(",");//  "tess, 0"
                 int score = Integer.parseInt(values[1].trim());
                createPlayer(values[0],score);
+               ui.promptBinary("Continue previously saved game? Y/N");
             }
 
         }else{
